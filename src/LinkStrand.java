@@ -1,5 +1,3 @@
-import javax.swing.*;
-
 //Ameya Rao
 //Helen Xu
 public class LinkStrand implements IDnaStrand{
@@ -15,6 +13,8 @@ public class LinkStrand implements IDnaStrand{
     private Node myFirst, myLast;
     private long mySize;
     private int myAppends;
+    private int myIndex, myLocalIndex;
+    private Node myCurrent;
 
     public LinkStrand(){
         this("");
@@ -31,9 +31,9 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public void initialize(String source) {
-        myFirst = myLast = new Node(source);
+        myFirst = myLast = myCurrent = new Node(source);
         mySize = source.length();
-        myAppends = 0;
+        myAppends = myIndex = myLocalIndex = 0;
     }
 
     @Override
@@ -76,7 +76,27 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public char charAt(int index) {
-        return 0;
+        if (index < 0 || index >= mySize)
+            throw new IndexOutOfBoundsException();
+        if (index < myIndex) {
+            myCurrent = myFirst;
+            myIndex = myLocalIndex = 0;
+        }
+        //while (index-myIndex+1>myCurrent.info.length()) {
+        while (index!=myIndex) {
+//            myIndex += myCurrent.info.length();
+//            //myIndex += myCurrent.info.length()-myLocalIndex-1;
+//            myCurrent = myCurrent.next;
+            myIndex++;
+            myLocalIndex++;
+            if (myLocalIndex>=myCurrent.info.length()) {
+                myCurrent = myCurrent.next;
+                myLocalIndex = 0;
+            }
+        }
+//        myLocalIndex = index - myIndex;
+//        myIndex = index;
+        return myCurrent.info.charAt(myLocalIndex);
     }
 
     @Override
