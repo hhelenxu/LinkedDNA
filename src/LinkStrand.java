@@ -82,11 +82,7 @@ public class LinkStrand implements IDnaStrand{
             myCurrent = myFirst;
             myIndex = myLocalIndex = 0;
         }
-        //while (index-myIndex+1>myCurrent.info.length()) {
         while (index!=myIndex) {
-//            myIndex += myCurrent.info.length();
-//            //myIndex += myCurrent.info.length()-myLocalIndex-1;
-//            myCurrent = myCurrent.next;
             myIndex++;
             myLocalIndex++;
             if (myLocalIndex>=myCurrent.info.length()) {
@@ -94,6 +90,11 @@ public class LinkStrand implements IDnaStrand{
                 myLocalIndex = 0;
             }
         }
+//        wrong but don't see why
+//        while (index-myIndex+1>myCurrent.info.length()) {
+//            myIndex += myCurrent.info.length();
+//            myCurrent = myCurrent.next;
+//        }
 //        myLocalIndex = index - myIndex;
 //        myIndex = index;
         return myCurrent.info.charAt(myLocalIndex);

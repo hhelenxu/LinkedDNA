@@ -122,9 +122,6 @@ public class AnalysisDNA {
             mySource += copy;
         }
 
-//        String results = strandSpliceBenchmark(ENZYME, splicee, strandType);
-//        System.out.println(results);
-
         System.exit(0);
     }
 }
