@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 //Ameya Rao
 //Helen Xu
 public class LinkStrand implements IDnaStrand{
@@ -24,7 +26,7 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public long size() {
-        return 0;
+        return mySize;
     }
 
     @Override
@@ -36,12 +38,16 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public IDnaStrand getInstance(String source) {
-        return null;
+        return new LinkStrand(source);
     }
 
     @Override
     public IDnaStrand append(String dna) {
-        return null;
+        myLast.next = new Node(dna);
+        myLast = myLast.next;
+        mySize += dna.length();
+        myAppends++;
+        return this;
     }
 
     @Override
@@ -51,11 +57,22 @@ public class LinkStrand implements IDnaStrand{
 
     @Override
     public int getAppendCount() {
-        return 0;
+        return myAppends;
     }
 
     @Override
     public char charAt(int index) {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node tmp = myFirst;
+        while (tmp!=null) {
+            sb.append(tmp.info);
+            tmp = tmp.next;
+        }
+        return sb.toString();
     }
 }
