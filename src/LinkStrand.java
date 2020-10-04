@@ -24,11 +24,20 @@ public class LinkStrand implements IDnaStrand{
         initialize(s);
     }
 
+    /**
+     * Returns the total length of the LinkStrand object
+     * @return number of characters total
+     */
     @Override
     public long size() {
         return mySize;
     }
 
+    /**
+     * Helper method to the constructor.
+     * Initializes instance variables
+     * @param original DNA string
+     */
     @Override
     public void initialize(String source) {
         myFirst = myLast = myCurrent = new Node(source);
@@ -36,11 +45,21 @@ public class LinkStrand implements IDnaStrand{
         myAppends = myIndex = myLocalIndex = 0;
     }
 
+    /**
+     * Returns an IDnaStrand object containing the specificed string
+     * @param source is data from which object constructed
+     * @return IDnaStrand object
+     */
     @Override
     public IDnaStrand getInstance(String source) {
         return new LinkStrand(source);
     }
 
+    /**
+     * Appends a new Node containing the given dna string to the end
+     * @param dna is the string appended to this strand
+     * @return IDnaStrand object
+     */
     @Override
     public IDnaStrand append(String dna) {
         myLast.next = new Node(dna);
@@ -50,6 +69,10 @@ public class LinkStrand implements IDnaStrand{
         return this;
     }
 
+    /**
+     * Reverses the entire DNA string
+     * @return reversed IDnaStrand object
+     */
     @Override
     public IDnaStrand reverse() {
         Node temp = myFirst;
@@ -69,11 +92,20 @@ public class LinkStrand implements IDnaStrand{
         return ret;
     }
 
+    /**
+     * Returns the number of appends
+     * @return number of appends
+     */
     @Override
     public int getAppendCount() {
         return myAppends;
     }
 
+    /**
+     * Finds character of DNA at specified location
+     * @param index specifies which character will be returned
+     * @return character at the given index
+     */
     @Override
     public char charAt(int index) {
         if (index < 0 || index >= mySize)
@@ -100,6 +132,10 @@ public class LinkStrand implements IDnaStrand{
         return myCurrent.info.charAt(myLocalIndex);
     }
 
+    /**
+     * Converting LinkStrand object to its string representation
+     * @return string form of LinkStrand object
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
